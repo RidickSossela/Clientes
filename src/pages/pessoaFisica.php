@@ -9,7 +9,7 @@
                 <th>Data Nascimento</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody">
             <?php 
                 require_once('../model/PessoaFisica.php');
                 $clientes = PessoaFisica::getClientes();

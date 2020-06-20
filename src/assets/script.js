@@ -36,33 +36,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const ajaxPessoaFisica = (res) => {
+        let tbody = document.getElementById("tbody");
+        let html = '';
+        let data = '';
         if (res.target.readyState == 4) {
-            //document.querySelector('tbody').remove()
-            let elemento = document.querySelector("tbody");
-            while (elemento.firstChild) {
-                elemento.removeChild(elemento.firstChild);
+            let data = JSON.parse(res.target.response);
+
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
             }
-
-            data = JSON.parse(res.target.response);
-            console.log(data)
-            let html = '';
-
-            Object.keys(data).forEach(elem => {
-                html = + "<tbody> <tr> <td>" + elem.id + "</td>" +
-                    "<td>" + elem.nome + "</td>" +
-                    "<td>" + elem.categoria + "</td>" +
-                    "<td>" + elem.cpf + "</td>" +
-                    "<td>" + elem.data_nascimento + "</td>" +
-                    " </tr> </tbody>"
-            });
-            document.querySelector('table').insertAdjacentHTML('beforeend', html);
+            if (typeof data.erro === 'undefined') {
+                data.forEach((cliente)=> {
+                    console.log( cliente.nome)
+                        html += "<tbody> <tr> <td>" + cliente.id_cliente + "</td>" +
+                            "<td>" + cliente.nome+ "</td>" +
+                            "<td>" + cliente.categoria + "</td>" +
+                            "<td>" + cliente.cpf + "</td>" +
+                            "<td>" + cliente.data_nascimento + "</td>" +
+                            " </tr> </tbody>"
+                    });
+                } 
+            } else {
+                html = `<tr><td>${data.erro}</td</tr>`;
+            }
+            
+            tbody.insertAdjacentHTML('beforeend', html);
         }
-    }
+    
 
 
     const ajaxCnpj = (res) => {
         if (res.target.readyState == 4) {
-            
+
             let elemento = document.querySelector("tbody");
             while (elemento.firstChild) {
                 elemento.removeChild(elemento.firstChild);
@@ -70,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             data = JSON.parse(res.target.response);
             let html = '';
-            
+
             Object.keys(data).forEach(elem => {
                 console.log(elem)
                 html = + "<tbody> <tr> <td>" + elem.clientes_p_juridica + "</td>" +
@@ -91,5 +96,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ajax(url, null, "GET", ajaxPessoaFisica);
     });
-
 });
