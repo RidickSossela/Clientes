@@ -58,6 +58,7 @@
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
+            $res = [];
             while ($cliente = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $res = [
                     $clientes = [
@@ -66,16 +67,14 @@
                             "categoria" => "Pessoa Fisica",
                             "cpf" => $cliente['cpf'],
                             "data_nascimento" => $cliente['data_nascimento'],
-                        ]
+                    ]
                 ];
             }
-            
         }
         else {
-            $res= ["erro" => "Nada encontrado!"];
+            $res =  ["erro" => "Nada encontrado!"];
         }
-    return  json_encode($res);
-}
-
+        return  json_encode($res);
+    }
 }
 ?>

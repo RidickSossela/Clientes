@@ -10,7 +10,7 @@
                 <th>Endereço</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody-cnpj">
             <?php 
                 require_once('../model/Cnpj.php');
                 $clientes = Cnpj::getClientes();

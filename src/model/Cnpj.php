@@ -58,24 +58,24 @@ class Cnpj extends Cliente {
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
+            $res = [];
             while ($cliente = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $clientes = [
-                    "clientes_p_juridica" => $cliente['clientes_p_juridica'],
-                    "nome_fantasia" => $cliente['nome_fantasia'],
-                    "categoria" => "CNPJ",
-                    "cnpj" => $cliente['cnpj'],
-                    "inscricao_estadual" => $cliente['inscricao_estadual'],
-                    "endereco" => $cliente['endereco'],
+                $res = [
+                    $clientes = [
+                        "clientes_p_juridica" => $cliente['clientes_p_juridica'],
+                        "nome_fantasia" => $cliente['nome_fantasia'],
+                        "categoria" => "CNPJ",
+                        "cnpj" => $cliente['cnpj'],
+                        "inscricao_estadual" => $cliente['inscricao_estadual'],
+                        "endereco" => $cliente['endereco'],
+                    ]
                 ];
             }
             
-            }
-        else {
-            return "Nada encontrado";
-
+        } else {
+            $res =  ["erro" => "Nada encontrado!"];
         }
-    return  json_encode($clientes);
-}
-
-}
+        return  json_encode($res);
+        }
+    }
 ?>
