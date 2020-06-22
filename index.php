@@ -12,8 +12,8 @@
         </div>
         <nav class="nav" id="nav">
             <ul>
-                <li> <a href="pessoafisica" id="menupf">PESSOA FISICA</a> </li>
-                <li> <a href="cnpj" id="menucnpj">CNPJ</a> </li>
+                <li> <a href="#pessoafisica" id="menupf">PESSOA FISICA</a> </li>
+                <li> <a href="#cnpj" id="menucnpj">CNPJ</a> </li>
                 <li>Buscar: <input class="buscar" tela="pessoaFisica" type="search" id="buscar"></li>
             </ul>
         </nav>
@@ -22,7 +22,7 @@
     <section>
     <?php
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "localhost/clientes/src/pages/cnpj.php");
+        curl_setopt($ch, CURLOPT_URL, "localhost/clientes/src/View/cnpj.php");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $pagina = curl_exec($ch);
         curl_close($ch);
@@ -33,7 +33,7 @@
     <section>
     <?php
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "localhost/clientes/src/pages/pessoaFisica.php");
+        curl_setopt($ch, CURLOPT_URL, "localhost/clientes/src/View/pessoaFisica.php");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $pagina = curl_exec($ch);
         curl_close($ch);
@@ -41,5 +41,6 @@
     ?>
     </section>
 </body>
-<script src="./src/assets/script.js"></script> 
+<script src="./src/assets/js/script.js"></script> 
+<script src="./src/assets/js/ajax.js"></script> 
 </html>

@@ -8,37 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
         tela = mostra;
     }
 
-    document.getElementById("menupf").addEventListener("click", (e) => {
-        e.preventDefault()
-        mudarTela("cnpj", "pessoaFisica");
-    });
-
-    document.getElementById("menucnpj").addEventListener("click", (e) => {
-        e.preventDefault();
-        mudarTela("pessoaFisica", "cnpj")
-    });
-
-
-
-    const ajax = (url, parametros, metodo, callback) => {
-        let req = new XMLHttpRequest();
-
-        metodo ? "" : metodo = "GET";
-
-        if (req) {
-            req.open(metodo, url, true);
-            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            req.send(parametros);
-            req.onreadystatechange = callback;
-        } else {
-            alert("Erro na requisição");
-        }
-    }
+    document.getElementById("menupf").addEventListener("click", () => mudarTela("cnpj", "pessoaFisica"));
+    document.getElementById("menucnpj").addEventListener("click", () => mudarTela("pessoaFisica", "cnpj"));
 
     const ajaxPessoaFisica = (res) => {
         let tbody = document.getElementById("tbody-pf");
         let html = '';
         let data = '';
+
         if (res.target.readyState == 4) {
             data = JSON.parse(res.target.response);
 
@@ -62,12 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
-
     const ajaxCnpj = (res) => {
         let tbody = document.getElementById("tbody-cnpj");
         let html = '';
         let data = '';
+
         if (res.target.readyState == 4) {
             data = JSON.parse(res.target.response);
 
@@ -77,30 +53,40 @@ document.addEventListener("DOMContentLoaded", () => {
             if (typeof data.erro === 'undefined') {
                 data.forEach((cliente) => {
                     html += "<tbody> <tr> <td>" + cliente.clientes_p_juridica + "</td>" +
-                    "<td>" + cliente.nome_fantasia + "</td>" +
-                    "<td>" + cliente.categoria + "</td>" +
-                    "<td>" + cliente.cnpj + "</td>" +
-                    "<td>" + cliente.inscricao_estadual + "</td>" +
-                    "<td>" + cliente.endereco + "</td>" +
-                    " </tr> </tbody>"
+                        "<td>" + cliente.nome_fantasia + "</td>" +
+                        "<td>" + cliente.categoria + "</td>" +
+                        "<td>" + cliente.cnpj + "</td>" +
+                        "<td>" + cliente.inscricao_estadual + "</td>" +
+                        "<td>" + cliente.endereco + "</td>" +
+                        " </tr> </tbody>"
                 });
             } else {
-                html += `<tr><td colspan="5">${data.erro}</td</tr>`;
+                html += `<tr><td colspan="6">${data.erro}</td</tr>`;
             }
-
             tbody.insertAdjacentHTML('beforeend', html);
         }
     }
 
     document.querySelector('#buscar').addEventListener("keyup", (e) => {
-        let url = `./src/pesquisar.php/pesquisar?busca=${e.target.value}&cate=${tela}`;
-      
+        let url = `./src/Controller/pesquisar.php/pesquisar?busca=${e.target.value}&cate=${tela}`;
+
         if (tela == "pessoaFisica") {
-            ajax(url, null, "GET", ajaxPessoaFisica);
+            ajax({
+                url,
+                parametros: null,
+                metodo: "GET", 
+                callback: ajaxPessoaFisica
+            });
         } else {
-            ajax(url, null, "GET", ajaxCnpj);
+            ajax({
+                url,
+                parametros: null,
+                metodo: "GET",
+                callback: ajaxCnpj
+            });
         }
     });
+
 });
 
 

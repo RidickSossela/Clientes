@@ -11,7 +11,7 @@
         </thead>
         <tbody id="tbody-pf">
             <?php 
-                require_once('../model/PessoaFisica.php');
+                require_once('../Model/PessoaFisica.php');
                 $clientes = PessoaFisica::getClientes();
             ?>
             <tr>

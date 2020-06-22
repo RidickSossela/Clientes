@@ -1,6 +1,6 @@
 <?php
-    require_once('./model/PessoaFisica.php');
-    require_once('./model/Cnpj.php');
+    require_once('../Model/PessoaFisica.php');
+    require_once('../Model/Cnpj.php');
     
 if($_GET['cate'] == 'pessoaFisica') {
         $pessoaFisica = PessoaFisica::pesquisar($_GET['busca']);
@@ -13,5 +13,4 @@ if($_GET['cate'] == 'pessoaFisica') {
         echo $cnpj;
 
     }
-
 ?>

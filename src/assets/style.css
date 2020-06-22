@@ -83,7 +83,7 @@ section {
 }
 
 table {
-    margin: 20px;
+    margin: 10px;
     padding: 10px;
     font-size: 20px;
     color: #3b3d42;
@@ -92,7 +92,7 @@ table {
 
 table tr th {
     border-bottom: 1px solid #999;
-    padding:  10px 10px 5px 10px ;
+    padding:  10px 10px 0px 10px ;
     margin: 0;
 }
 table tr td {
@@ -104,4 +104,21 @@ table tr td {
 
 #cnpj {
     display:none;
+}
+
+.btn-cadastrar {
+    margin: 20px 10px 0px 10px;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    border-color: #1fe672;
+    background-color: #12b428;
+    color: #fff;
+    height: 35px;
+    font-size: 16px;
+}
+
+.btn-cadastrar:hover {
+    background-color: #12b428c0;
+    font-weight: bold;
 }

@@ -1,8 +1,9 @@
 <article id="cnpj">
+    <button type="submit" class="btn-cadastrar" id="btnCadastrarCnpj">Cadastrar CNPJ</button>
     <table>
         <thead>
             <tr>
-                <th>Id</th>    
+                <th>Id</th>
                 <th>Nome Fantasia</th>
                 <th>Categoria</th>
                 <th>CNPJ</th>
@@ -12,7 +13,7 @@
         </thead>
         <tbody id="tbody-cnpj">
             <?php 
-                require_once('../model/Cnpj.php');
+                require_once('../Model/Cnpj.php');
                 $clientes = Cnpj::getClientes();
             ?>
             <td><?= $clientes['id_cliente']?></td>
@@ -21,7 +22,7 @@
             <td><?= $clientes['cnpj']?></td>
             <td><?= $clientes['inscricao_estadual']?></td>
             <td><?= $clientes['endereco']?></td>
-            
+
         </tbody>
-    </table>  
+    </table>
 </article>
